@@ -1,0 +1,15 @@
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="multdivSuite">
+  <test name="multdivOperationsTest">
+    <groups>
+      <run>
+        <include name="multdiv"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="com.epam.tc.egorova.hw1"/>
+    </packages>
+  </test>
+</suite>
