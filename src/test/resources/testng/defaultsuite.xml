@@ -5,7 +5,7 @@
   <test name="defaultOperationsTest">
     <groups>
       <run>
-        <include name="default"/>
+        <include name="sumsub"/>
       </run>
     </groups>
     <packages>
