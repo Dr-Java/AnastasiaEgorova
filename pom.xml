@@ -17,6 +17,7 @@
         <testng.suite.file>${testng.configs.path}/defaultsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/generalsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/multdivsuite.xml</testng.suite.file>
+      <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
 
         <checkstyle.version>8.42</checkstyle.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -30,6 +31,8 @@
         <testng.version>7.4.0</testng.version>
 
         <assertj-core.version>3.4.1</assertj-core.version>
+        <selenium-chrome-driver.version>3.141.59</selenium-chrome-driver.version>
+        <selenium-support.version>3.141.59</selenium-support.version>
     </properties>
 
     <build>
@@ -156,6 +159,16 @@
             </properties>
         </profile>
 
+      <profile>
+        <id>jdi-light-profile</id>
+        <activation>
+          <activeByDefault>false</activeByDefault>
+        </activation>
+        <properties>
+          <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
+        </properties>
+      </profile>
+
     </profiles>
 
 
@@ -178,6 +191,31 @@
             <groupId>com.calculator</groupId>
             <artifactId>calculator-app</artifactId>
             <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium-chrome-driver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${selenium-support.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>4.4.3</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
