@@ -1,30 +1,15 @@
 package com.epam.tc.egorova.hw2.ex2;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.epam.tc.egorova.hw2.BaseTest;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-public class ExerciseTwoTest {
+public class ExerciseTwoTest extends BaseTest {
 
-    private WebDriver driver;
-    private WebDriverWait webDriverWait;
     private WebElement webElement;
-    SoftAssert softAssert = new SoftAssert();
-
-    @BeforeClass(alwaysRun = true)
-    public void setUpDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
+    SoftAssertions softAssert = new SoftAssertions();
 
     @Test(groups = {"jdiLight"})
     public void testExerciseTwo() {
@@ -34,7 +19,9 @@ public class ExerciseTwoTest {
         //Assert Browser title
         String browserTitle = driver.getTitle();
         String expectedBrowserTitle = "Home Page";
-        softAssert.assertEquals(browserTitle, expectedBrowserTitle);
+        softAssert.assertThat(browserTitle)
+                  .as("Browser title is incorrect")
+                  .isEqualTo(expectedBrowserTitle);
 
         //Perform login
         webElement = driver.findElement(By.id("user-icon"));
@@ -53,8 +40,9 @@ public class ExerciseTwoTest {
 
         //Assert User name in the left-top side of screen that user is loggined
         String expectedUsernameLoggined = "ROMAN IOVLEV";
-        softAssert.assertEquals(driver.findElement(By.xpath("//span[text()='Roman Iovlev']")),
-            expectedUsernameLoggined);
+        softAssert.assertThat(driver.findElement(By.id("user-name")).getText())
+                  .as("Username is incorrect")
+                  .isEqualTo(expectedUsernameLoggined);
 
         //Open through the header menu Service -> Different Elements Page
         webElement = driver.findElement(By
@@ -64,14 +52,14 @@ public class ExerciseTwoTest {
         webElement.click();
 
         //Select checkboxes (Water, Wind)
-        webElement = driver.findElement(By.xpath("//label[@class='label-checkbox'][1]"));
+        webElement = driver.findElement(By.xpath("//label[text()[contains(.,'Water')]]/input"));
         webElement.click();
 
-        webElement = driver.findElement(By.xpath("//label[@class='label-checkbox'][3]"));
+        webElement = driver.findElement(By.xpath("//label[text()[contains(.,'Wind')]]/input"));
         webElement.click();
 
         //Select radio (Selen)
-        webElement = driver.findElement(By.xpath("//label[@class='label-radio'][4]"));
+        webElement = driver.findElement(By.xpath("//label[text()[contains(.,'Selen')]]/input"));
         webElement.click();
 
         //Select in dropdown (Yellow)
@@ -85,48 +73,29 @@ public class ExerciseTwoTest {
          for dropdown there is a log row and value is corresponded to the selected value.
          */
 
-        softAssert.assertTrue(driver.findElement(By.xpath("//ul[@class='panel-body-list logs']")).isDisplayed());
+        softAssert.assertThat(driver.findElement(By.xpath("//ul[@class='panel-body-list logs']")).isDisplayed())
+                  .as("Log rows are absent");
 
-        softAssert.assertTrue(driver.findElement(By
+        softAssert.assertThat(driver.findElement(By
             .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'Water: condition changed to true')]"))
-                                    .isDisplayed());
+                                    .isDisplayed()).as("Water log is not displayed");
 
-        String expectedWaterLog = "Water: condition changed to true";
-        softAssert.assertEquals(driver.findElement(By
-            .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'Water: condition changed to true')]")),
-            expectedWaterLog);
-
-        softAssert.assertTrue(driver.findElement(By
+        softAssert.assertThat(driver.findElement(By
             .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'Wind: condition changed to true')]"))
-                                    .isDisplayed());
+                                    .isDisplayed())
+                  .as("Wind log is not displayed");
 
-        String expectedWindLog = "Wind: condition changed to true";
-        softAssert.assertEquals(driver.findElement(By
-                .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'Wind: condition changed to true')]")),
-            expectedWindLog);
 
-        softAssert.assertTrue(driver.findElement(By
+        softAssert.assertThat(driver.findElement(By
             .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'metal: value changed to  Selen')]"))
-                                    .isDisplayed());
+                                    .isDisplayed())
+                  .as("Selen log is not displayed");
 
-        String expectedMetalLog = "metal: value changed to  Selen";
-        softAssert.assertEquals(driver.findElement(By
-            .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'metal: value changed to  Selen')]")),
-            expectedMetalLog);
-
-        softAssert.assertTrue(driver.findElement(By
+        softAssert.assertThat(driver.findElement(By
             .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'Colors: value changed to Yellow')]"))
-                                    .isDisplayed());
+                                    .isDisplayed())
+                  .as("Yellow color log is not displayed");
 
-        String expectedColorsLog = "Colors: value changed to Yellow";
-        softAssert.assertEquals(driver.findElement(By
-            .xpath("//ul[@class='panel-body-list logs']/li[contains(text(),'Colors: value changed to Yellow')]")),
-            expectedColorsLog);
-    }
-
-    //Close Browser
-    @AfterClass(alwaysRun = true)
-    public void tearDownDriver() {
-        driver.close();
+        softAssert.assertAll();
     }
 }
