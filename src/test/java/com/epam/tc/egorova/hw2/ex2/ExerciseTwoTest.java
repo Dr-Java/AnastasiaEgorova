@@ -35,7 +35,7 @@ public class ExerciseTwoTest extends BaseTest {
         webElement = driver.findElement(By.id("password"));
         webElement.sendKeys(password);
 
-        webElement = driver.findElement(By.xpath("//span[text()='Enter'][1]"));
+        webElement = driver.findElement(By.id("login-button"));
         webElement.click();
 
         //Assert User name in the left-top side of screen that user is loggined
