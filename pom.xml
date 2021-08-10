@@ -17,6 +17,7 @@
         <testng.suite.file>${testng.configs.path}/defaultsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/generalsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/multdivsuite.xml</testng.suite.file>
+      <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
 
         <checkstyle.version>8.42</checkstyle.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -30,54 +31,58 @@
         <testng.version>7.4.0</testng.version>
 
         <assertj-core.version>3.4.1</assertj-core.version>
+        <!-- <selenium-chrome-driver.version>3.141.59</selenium-chrome-driver.version>
+         <selenium-support.version>3.141.59</selenium-support.version> -->
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <webdrivermanager.version>4.4.3</webdrivermanager.version>
     </properties>
 
-    <build>
-        <plugins>
+     <build>
+         <plugins>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
-            </plugin>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.8.0</version>
+                 <configuration>
+                     <source>11</source>
+                     <target>11</target>
+                 </configuration>
+             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>com.calculator</groupId>
-                            <artifactId>calculator-app</artifactId>
-                            <version>1.0</version>
-                            <packaging>jar</packaging>
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-install-plugin</artifactId>
+                 <version>2.5.2</version>
+                 <executions>
+                     <execution>
+                         <phase>initialize</phase>
+                         <goals>
+                             <goal>install-file</goal>
+                         </goals>
+                         <configuration>
+                             <groupId>com.calculator</groupId>
+                             <artifactId>calculator-app</artifactId>
+                             <version>1.0</version>
+                             <packaging>jar</packaging>
 
-                            <file>${basedir}/lib/calculator-1.0.jar</file>
+                             <file>${basedir}/lib/calculator-1.0.jar</file>
 
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
-                        <!--  <suiteXmlFile>${maven-surefire-plugin.suiteXmlFile}</suiteXmlFile>
-                           <suiteXmlFile>${maven-surefire-plugin-general.suiteXmlFile}</suiteXmlFile>
-                         <suiteXmlFile>${maven-surefire-plugin-multdiv.suiteXmlFile}</suiteXmlFile> -->
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-surefire-plugin</artifactId>
+                 <version>3.0.0-M5</version>
+                 <configuration>
+                     <suiteXmlFiles>
+                         <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
+                         <!--  <suiteXmlFile>${maven-surefire-plugin.suiteXmlFile}</suiteXmlFile>
+                            <suiteXmlFile>${maven-surefire-plugin-general.suiteXmlFile}</suiteXmlFile>
+                          <suiteXmlFile>${maven-surefire-plugin-multdiv.suiteXmlFile}</suiteXmlFile> -->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -156,6 +161,16 @@
             </properties>
         </profile>
 
+      <profile>
+        <id>homework2</id>
+        <activation>
+          <activeByDefault>false</activeByDefault>
+        </activation>
+        <properties>
+          <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
+        </properties>
+      </profile>
+
     </profiles>
 
 
@@ -178,6 +193,19 @@
             <groupId>com.calculator</groupId>
             <artifactId>calculator-app</artifactId>
             <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
