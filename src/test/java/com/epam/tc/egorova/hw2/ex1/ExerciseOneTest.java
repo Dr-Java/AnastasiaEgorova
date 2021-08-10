@@ -134,7 +134,7 @@ public class ExerciseOneTest extends BaseTest {
                       .as("Left Section items are not displayed");
         }
 
-        for (int i = 0; i < indexTextsUnderIcons.size(); i++) {
+        for (int i = 0; i < leftSectionItems.size(); i++) {
             softAssert.assertThat(leftSectionItems.get(i).getText())
                       .as("Text is incorrect")
                       .isEqualTo(expectedLeftSectionItems.get(i));
