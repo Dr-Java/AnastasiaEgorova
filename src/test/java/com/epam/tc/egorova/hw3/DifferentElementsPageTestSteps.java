@@ -5,12 +5,12 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class DifferentElementsPageTests {
+public class DifferentElementsPageTestSteps {
 
     private DifferentElementsPage differentElementsPage;
     SoftAssertions softAssert = new SoftAssertions();
 
-    public DifferentElementsPageTests(WebDriver driver) {
+    public DifferentElementsPageTestSteps(WebDriver driver) {
         differentElementsPage = new DifferentElementsPage(driver);
         PageFactory.initElements(driver, this);
     }
@@ -31,20 +31,9 @@ public class DifferentElementsPageTests {
         differentElementsPage.clickYellowColorDropdownItem();
     }
 
-    public void assertWaterCheckboxIsSelectedAndLogRowDisplayed() {
-        softAssert.assertThat(differentElementsPage.getWaterLogRow().isDisplayed());
-    }
-
-    public void assertWindCheckboxIsSelectedAndLogRowDisplayed() {
-        softAssert.assertThat(differentElementsPage.getWindLogRow().isDisplayed());
-    }
-
-    public void assertSelenRadioIsSelectedAndLogRowDisplayed() {
-        softAssert.assertThat(differentElementsPage.getSelenMetalLogRow().isDisplayed());
-    }
-
-    public void assertYellowColorIsSelectedAndLogRowDisplayed() {
-        softAssert.assertThat(differentElementsPage.getYellowColorLogRow().isDisplayed());
+    public void assertIndividualLogRowsAreDisplayed(String option, String mode, String text) {
+        softAssert.assertThat(differentElementsPage.isLogRowDisplayed(option, mode, text))
+                  .as("Log row is not diplayed");
     }
 }
 

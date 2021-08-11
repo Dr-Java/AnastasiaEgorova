@@ -9,34 +9,34 @@ public class ExerciseOneTest extends BaseTest {
     public void testExerciseOne() {
 
         //Assert Browser title
-        homePageTests.assertBrowserTitle("Home Page");
+        homePageTestSteps.assertBrowserTitle("Home Page");
 
         //Perform login
-        homePageTests.performLogin(username, password);
+        homePageTestSteps.performLogin(username, password);
 
         //Assert Username is loggined
-        homePageTests.assertUsernameLoggined(expectedUsername);
+        homePageTestSteps.assertUsernameLoggined(expectedUsername);
 
         //Assert that there are 4 items on the header section are displayed and they have proper texts
-        homePageTests.assertFourHeaderItemsHaveProperTexts();
+        homePageTestSteps.assertFourHeaderItemsHaveProperTexts();
 
         //Assert that there are 4 images on the Index Page and they are displayed
-        homePageTests.assertFourIndexPageImagesDisplayed();
+        homePageTestSteps.assertFourIndexPageImagesDisplayed();
 
         //Assert that there are 4 texts on the Index Page under icons and they have proper text
-        homePageTests.assertFourTextsUnderIconsHaveProperText();
+        homePageTestSteps.assertFourTextsUnderIconsHaveProperText();
 
         //Assert that there is the iframe with “Frame Button” exist
-        homePageTests.assertIFrameWithFrameButtonExists();
+        homePageTestSteps.assertIFrameWithFrameButtonExists();
 
         //Switch to the iframe and check that there is “Frame Button” in the iframe
-        homePageTests.switchToIFrameAndCheckFrameButtonDisplayed();
+        homePageTestSteps.switchToIFrameAndCheckFrameButtonDisplayed();
 
         //Switch to original window back
-        homePageTests.switchToOriginalWindow();
+        homePageTestSteps.switchToOriginalWindow();
 
         //Assert that there are 5 items in the Left Section are displayed and they have proper text
-        homePageTests.assertFiveLeftSectionItemsHaveProperText();
+        homePageTestSteps.assertFiveLeftSectionItemsHaveProperText();
     }
 }
 

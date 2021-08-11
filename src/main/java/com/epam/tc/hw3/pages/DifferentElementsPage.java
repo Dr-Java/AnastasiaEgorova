@@ -1,17 +1,17 @@
 package com.epam.tc.hw3.pages;
 
+import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DifferentElementsPage {
+public class DifferentElementsPage extends BasePage {
 
     protected WebDriver driver;
 
     public DifferentElementsPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(xpath = "//label[text()[contains(.,'Water')]]/input")
@@ -29,17 +29,8 @@ public class DifferentElementsPage {
     @FindBy(xpath = "//ul[@class='panel-body-list logs']")
     private WebElement logsPanel;
 
-    @FindBy(xpath = "//ul[@class='panel-body-list logs']/li[contains(text(),'Water: condition changed to true')]")
-    private WebElement waterLogRow;
-
-    @FindBy(xpath = "//ul[@class='panel-body-list logs']/li[contains(text(),'Wind: condition changed to true')]")
-    private WebElement windLogRow;
-
-    @FindBy(xpath = "//ul[@class='panel-body-list logs']/li[contains(text(),'metal: value changed to  Selen')]")
-    private WebElement selenMetalLogRow;
-
-    @FindBy(xpath = "//ul[@class='panel-body-list logs']/li[contains(text(),'Colors: value changed to Yellow')]")
-    private WebElement yellowColorLogRow;
+    @FindBy(xpath = "//li[text()[contains(.,'%s: %s changed to %s')]]")
+    private List<WebElement> logRows;
 
     public void clickWaterCheckbox() {
         waterCheckbox.click();
@@ -57,20 +48,12 @@ public class DifferentElementsPage {
         yellowColorDropdownItem.click();
     }
 
-    public WebElement getWaterLogRow() {
-        return waterLogRow;
-    }
-
-    public WebElement getWindLogRow() {
-        return windLogRow;
-    }
-
-    public WebElement getSelenMetalLogRow() {
-        return selenMetalLogRow;
-    }
-
-    public WebElement getYellowColorLogRow() {
-        return yellowColorLogRow;
+    public boolean isLogRowDisplayed(String option, String mode, String text) {
+        boolean display = false;
+        for (WebElement logRow : logRows) {
+            display = logRow.isDisplayed();
+        }
+        return display;
     }
 }
 

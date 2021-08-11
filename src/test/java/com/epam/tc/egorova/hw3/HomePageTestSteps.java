@@ -8,12 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePageTests {
+public class HomePageTestSteps {
 
     private HomePage homePage;
     SoftAssertions softAssert = new SoftAssertions();
 
-    public HomePageTests(WebDriver driver) {
+    public HomePageTestSteps(WebDriver driver) {
         homePage = new HomePage(driver);
         PageFactory.initElements(driver, this);
     }

@@ -4,15 +4,11 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
-
-    protected WebDriver driver;
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "user-icon")
@@ -53,10 +49,6 @@ public class HomePage {
 
     @FindBy(xpath = "//a[@href='different-elements.html']")
     private WebElement differentElementsItem;
-
-    public String getBrowserTitle() {
-        return driver.getTitle();
-    }
 
     public void login(String username, String password) {
         userIcon.click();

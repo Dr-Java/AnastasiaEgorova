@@ -8,27 +8,27 @@ public class ExerciseTwoTest extends BaseTest {
     @Test(groups = "jdiLightNew")
     public void testExerciseTwo() {
         //Assert Browser title
-        homePageTests.assertBrowserTitle("Home Page");
+        homePageTestSteps.assertBrowserTitle("Home Page");
 
         //Perform login
-        homePageTests.performLogin(username, password);
+        homePageTestSteps.performLogin(username, password);
 
         //Assert User name in the left-top side of screen that user is loggined
-        homePageTests.assertUsernameLoggined(expectedUsername);
+        homePageTestSteps.assertUsernameLoggined(expectedUsername);
 
         //Open through the header menu Service -> Different Elements Page
-        homePageTests.clickServiceMenuItem();
-        homePageTests.clickDifferentElementsItem();
+        homePageTestSteps.clickServiceMenuItem();
+        homePageTestSteps.clickDifferentElementsItem();
 
         //Select checkboxes (Water, Wind)
-        differentElementsPageTests.selectWaterCheckbox();
-        differentElementsPageTests.selectWindCheckbox();
+        differentElementsPageTestSteps.selectWaterCheckbox();
+        differentElementsPageTestSteps.selectWindCheckbox();
 
         //Select radio (Selen)
-        differentElementsPageTests.selectSelenRadioButton();
+        differentElementsPageTestSteps.selectSelenRadioButton();
 
         //Select in dropdown (Yellow)
-        differentElementsPageTests.selectYellowColorInDropdown();
+        differentElementsPageTestSteps.selectYellowColorInDropdown();
 
         /*
          Assert that
@@ -37,11 +37,14 @@ public class ExerciseTwoTest extends BaseTest {
          for dropdown there is a log row and value is corresponded to the selected value.
          */
 
-        differentElementsPageTests.assertWaterCheckboxIsSelectedAndLogRowDisplayed();
-        differentElementsPageTests.assertWindCheckboxIsSelectedAndLogRowDisplayed();
-        differentElementsPageTests.assertSelenRadioIsSelectedAndLogRowDisplayed();
-        differentElementsPageTests.assertYellowColorIsSelectedAndLogRowDisplayed();
-
+        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("Water", "condition",
+            "true");
+        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("Wind", "condition",
+            "true");
+        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("metal", "value",
+            "selen");
+        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("Colors", "value",
+            "Yellow");
     }
 }
 

@@ -12,8 +12,8 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTest {
 
     protected WebDriver driver;
-    protected HomePageTests homePageTests;
-    protected DifferentElementsPageTests differentElementsPageTests;
+    protected HomePageTestSteps homePageTestSteps;
+    protected DifferentElementsPageTestSteps differentElementsPageTestSteps;
     private String siteURL = "https://jdi-testing.github.io/jdi-light/index.html";
     private String userPropertiesFile = ".\\src\\test\\resources\\user.properties";
     protected String username;
@@ -27,8 +27,8 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get(siteURL);
         getUserData(userPropertiesFile);
-        homePageTests = new HomePageTests(driver);
-        differentElementsPageTests = new DifferentElementsPageTests(driver);
+        homePageTestSteps = new HomePageTestSteps(driver);
+        differentElementsPageTestSteps = new DifferentElementsPageTestSteps(driver);
     }
 
     public void getUserData(String properties) {

@@ -21,17 +21,21 @@ public class BonusExerciseTwoTests extends BaseTests {
                   .as("Username is incorrect")
                   .isEqualTo(expectedUsername);
 
-        homePage.clickServiceHeaderMenuItem()
+        differentElementsPage = homePage.clickServiceHeaderMenuItem()
                 .clickDifferentElementsItem();
         differentElementsPage.clickWaterCheckbox()
                              .clickWindCheckbox()
                              .clickSelenRadioButton()
                              .clickYellowColorDropdownItem();
         softAssert.assertThat(differentElementsPage.logRowsAreDisplayed());
-        softAssert.assertThat(differentElementsPage.waterCheckboxIsSelectedAndLogRowIsDisplayed());
-        softAssert.assertThat(differentElementsPage.windCheckboxIsSelectedAndLogRowIsDisplayed());
-        softAssert.assertThat(differentElementsPage.selenMetalRadioButtonIsSelectedAndLogRowIsDisplayed());
-        softAssert.assertThat(differentElementsPage.yellowColorIsSelectedAndLogRowIsDisplayed());
+        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("Water", "condition",
+            "true"));
+        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("Wind", "condition",
+            "true"));
+        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("metal", "value",
+            "selen"));
+        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("Colors", "value",
+            "Yellow"));
 
         softAssert.assertAll();
     }

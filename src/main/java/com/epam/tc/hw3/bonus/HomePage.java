@@ -3,15 +3,11 @@ package com.epam.tc.hw3.bonus;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
-
-    private WebDriver driver;
+public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "user-icon")
@@ -29,9 +25,11 @@ public class HomePage {
     @FindBy(id = "user-name")
     private WebElement logginedUsername;
 
-    public String getBrowserTitle() {
-        return driver.getTitle();
-    }
+    @FindBy(xpath = "//ul[@class='uui-navigation nav navbar-nav m-l8']//a[@class='dropdown-toggle']")
+    private WebElement serviceHeaderMenuItem;
+
+    @FindBy(xpath = "//a[@href='different-elements.html']")
+    private WebElement differentElementsItem;
 
     public HomePage clickUserIcon() {
         userIcon.click();
@@ -56,12 +54,6 @@ public class HomePage {
     public String getLogginedUsername() {
         return logginedUsername.getText();
     }
-
-    @FindBy(xpath = "//ul[@class='uui-navigation nav navbar-nav m-l8']//a[@class='dropdown-toggle']")
-    private WebElement serviceHeaderMenuItem;
-
-    @FindBy(xpath = "//a[@href='different-elements.html']")
-    private WebElement differentElementsItem;
 
     public HomePage clickServiceHeaderMenuItem() {
         serviceHeaderMenuItem.click();
