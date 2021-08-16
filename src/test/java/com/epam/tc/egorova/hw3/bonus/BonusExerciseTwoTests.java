@@ -1,5 +1,6 @@
 package com.epam.tc.egorova.hw3.bonus;
 
+import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 
@@ -28,14 +29,12 @@ public class BonusExerciseTwoTests extends BaseTests {
                              .clickSelenRadioButton()
                              .clickYellowColorDropdownItem();
         softAssert.assertThat(differentElementsPage.logRowsAreDisplayed());
-        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("Water", "condition",
-            "true"));
-        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("Wind", "condition",
-            "true"));
-        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("metal", "value",
-            "selen"));
-        softAssert.assertThat(differentElementsPage.isLogRowDisplayed("Colors", "value",
-            "Yellow"));
+
+        bonusTestSteps.assertThatLogRowsAreDisplayed(List.of(
+            "value changed to Yellow",
+            "value changed to Selen",
+            "condition changed to true",
+            "condition changed to true"));
 
         softAssert.assertAll();
     }

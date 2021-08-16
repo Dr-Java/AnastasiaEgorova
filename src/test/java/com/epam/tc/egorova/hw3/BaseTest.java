@@ -15,7 +15,7 @@ public class BaseTest {
     protected HomePageTestSteps homePageTestSteps;
     protected DifferentElementsPageTestSteps differentElementsPageTestSteps;
     private String siteURL = "https://jdi-testing.github.io/jdi-light/index.html";
-    private String userPropertiesFile = ".\\src\\test\\resources\\user.properties";
+    private String userPropertiesFile = "src//test//resources//user.properties";
     protected String username;
     protected String password;
     protected String expectedUsername;

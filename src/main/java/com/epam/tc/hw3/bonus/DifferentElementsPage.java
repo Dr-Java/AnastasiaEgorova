@@ -54,12 +54,8 @@ public class DifferentElementsPage extends BasePage {
         return logsPanel.isDisplayed();
     }
 
-    public boolean isLogRowDisplayed(String option, String mode, String text) {
-        boolean display = false;
-        for (WebElement logRow : logRows) {
-            display = logRow.isDisplayed();
-        }
-        return display;
+    public List<WebElement> getLogRows() {
+        return logRows;
     }
 }
 

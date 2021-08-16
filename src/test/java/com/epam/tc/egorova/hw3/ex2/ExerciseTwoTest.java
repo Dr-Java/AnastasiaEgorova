@@ -1,6 +1,7 @@
 package com.epam.tc.egorova.hw3.ex2;
 
 import com.epam.tc.egorova.hw3.BaseTest;
+import java.util.List;
 import org.testng.annotations.Test;
 
 public class ExerciseTwoTest extends BaseTest {
@@ -37,14 +38,11 @@ public class ExerciseTwoTest extends BaseTest {
          for dropdown there is a log row and value is corresponded to the selected value.
          */
 
-        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("Water", "condition",
-            "true");
-        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("Wind", "condition",
-            "true");
-        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("metal", "value",
-            "selen");
-        differentElementsPageTestSteps.assertIndividualLogRowsAreDisplayed("Colors", "value",
-            "Yellow");
+        differentElementsPageTestSteps.assertThatLogRowsAreDisplayed(List.of(
+            "value changed to Yellow",
+            "value changed to Selen",
+            "condition changed to true",
+            "condition changed to true"));
     }
 }
 

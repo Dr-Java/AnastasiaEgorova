@@ -16,8 +16,9 @@ public class BaseTests {
     protected WebDriver driver;
     protected HomePage homePage;
     protected DifferentElementsPage differentElementsPage;
+    protected BonusTestSteps bonusTestSteps;
     private String siteURL = "https://jdi-testing.github.io/jdi-light/index.html";
-    private String userPropertiesFile = ".\\src\\test\\resources\\user.properties";
+    private String userPropertiesFile = "src//test//resources//user.properties";
     protected String username;
     protected String password;
     protected String expectedUsername;
@@ -31,6 +32,7 @@ public class BaseTests {
         getUserData(userPropertiesFile);
         homePage = new HomePage(driver);
         differentElementsPage = new DifferentElementsPage(driver);
+        bonusTestSteps = new BonusTestSteps(driver);
     }
 
     public void getUserData(String properties) {
