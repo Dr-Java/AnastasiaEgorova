@@ -18,6 +18,8 @@
         <testng.suite.file>${testng.configs.path}/generalsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/multdivsuite.xml</testng.suite.file>
       <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
+        <testng.suite.file>${testng.configs.path}/jdi.light.secondsuite.xml</testng.suite.file>
+        <testng.suite.file>${testng.configs.path}/jdi.light.hw3.bonussuite.xml</testng.suite.file>
 
         <checkstyle.version>8.42</checkstyle.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -80,9 +82,6 @@
                  <configuration>
                      <suiteXmlFiles>
                          <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
-                         <!--  <suiteXmlFile>${maven-surefire-plugin.suiteXmlFile}</suiteXmlFile>
-                            <suiteXmlFile>${maven-surefire-plugin-general.suiteXmlFile}</suiteXmlFile>
-                          <suiteXmlFile>${maven-surefire-plugin-multdiv.suiteXmlFile}</suiteXmlFile> -->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -170,6 +169,26 @@
           <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
         </properties>
       </profile>
+
+        <profile>
+            <id>homework3</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/jdi.light.secondsuite.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework3bonus</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/jdi.light.hw3.bonussuite.xml</testng.suite.file>
+            </properties>
+        </profile>
 
     </profiles>
 
