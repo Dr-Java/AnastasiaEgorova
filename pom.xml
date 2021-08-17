@@ -20,6 +20,7 @@
       <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/jdi.light.secondsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/jdi.light.hw3.bonussuite.xml</testng.suite.file>
+        <testng.suite.file>${testng.configs.path}/homework4.xml</testng.suite.file>
 
         <checkstyle.version>8.42</checkstyle.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -33,10 +34,14 @@
         <testng.version>7.4.0</testng.version>
 
         <assertj-core.version>3.4.1</assertj-core.version>
-        <!-- <selenium-chrome-driver.version>3.141.59</selenium-chrome-driver.version>
-         <selenium-support.version>3.141.59</selenium-support.version> -->
+
         <selenium-java.version>3.141.59</selenium-java.version>
         <webdrivermanager.version>4.4.3</webdrivermanager.version>
+
+        <allure.version>2.13.2</allure.version>
+        <aspectj.version>1.9.5</aspectj.version>
+
+        <cucumber.version>6.11.0</cucumber.version>
     </properties>
 
      <build>
@@ -80,10 +85,21 @@
                  <artifactId>maven-surefire-plugin</artifactId>
                  <version>3.0.0-M5</version>
                  <configuration>
+                     <argLine>
+                         --illegal-access=permit
+                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                     </argLine>
                      <suiteXmlFiles>
                          <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
+                 <dependencies>
+                     <dependency>
+                         <groupId>org.aspectj</groupId>
+                         <artifactId>aspectjweaver</artifactId>
+                         <version>${aspectj.version}</version>
+                     </dependency>
+                 </dependencies>
             </plugin>
 
 
@@ -132,7 +148,6 @@
             </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/defaultsuite.xml</testng.suite.file>
-            <!--<maven-surefire-plugin.suiteXmlFile>${project.build.testOutputDirectory}/testng/defaultsuite.xml</maven-surefire-plugin.suiteXmlFile> -->
             </properties>
         </profile>
 
@@ -143,8 +158,6 @@
             </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/generalsuite.xml</testng.suite.file>
-               <!-- <maven-surefire-plugin-general.suiteXmlFile>${project.build.testOutputDirectory}/testng/generalsuite.xml
-                </maven-surefire-plugin-general.suiteXmlFile> -->
             </properties>
         </profile>
 
@@ -155,8 +168,6 @@
             </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/multdivsuite.xml</testng.suite.file>
-              <!--  <maven-surefire-plugin-multdiv.suiteXmlFile>${project.build.testOutputDirectory}/testng/multdivsuite.xml
-                </maven-surefire-plugin-multdiv.suiteXmlFile> -->
             </properties>
         </profile>
 
@@ -187,6 +198,16 @@
             </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/jdi.light.hw3.bonussuite.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>homework4</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/homework4.xml</testng.suite.file>
             </properties>
         </profile>
 
@@ -227,6 +248,38 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
     </dependencies>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
