@@ -21,6 +21,7 @@
         <testng.suite.file>${testng.configs.path}/jdi.light.secondsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/jdi.light.hw3.bonussuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/homework4.xml</testng.suite.file>
+        <testng.suite.file>${testng.configs.path}/homework5.xml</testng.suite.file>
 
         <checkstyle.version>8.42</checkstyle.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -42,6 +43,7 @@
         <aspectj.version>1.9.5</aspectj.version>
 
         <cucumber.version>6.11.0</cucumber.version>
+        <lombok.version>1.18.20</lombok.version>
     </properties>
 
      <build>
@@ -211,6 +213,16 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>homework5</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/homework5.xml</testng.suite.file>
+            </properties>
+        </profile>
+
     </profiles>
 
 
@@ -264,6 +276,13 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
