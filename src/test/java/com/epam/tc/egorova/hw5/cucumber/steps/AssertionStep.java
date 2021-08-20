@@ -2,7 +2,7 @@ package com.epam.tc.egorova.hw5.cucumber.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.epam.tc.hw5.entityproperty.UserProperties;
+import com.epam.tc.hw5.utils.UserProperties;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;

@@ -1,39 +1,35 @@
-package com.epam.tc.hw5.entityproperty;
+package com.epam.tc.hw5.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 public class UserProperties {
 
     private static final String USER_PROPERTY = "src/test/resources/user.properties";
+    protected String username;
+    protected String password;
+    protected String expectedUsername;
 
-    public static Map<String, String> getUserData() {
-        Map<String, String> userData = new HashMap<>();
+    public static String getUserData(String property) {
         Properties userProperties = new Properties();
         try (FileInputStream fis = new FileInputStream(USER_PROPERTY)) {
             userProperties.load(fis);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String key : userProperties.stringPropertyNames()) {
-            String value = userProperties.getProperty(key);
-            userData.put(key, String.valueOf(value));
-        }
-        return userData;
+        return userProperties.getProperty(property);
     }
 
     public static String getUsername() {
-        return getUserData().get("siteusername");
+        return getUserData("siteusername");
     }
 
     public static String getPassword() {
-        return getUserData().get("sitepassword");
+        return getUserData("sitepassword");
     }
 
     public static String getExpectedUsername() {
-        return getUserData().get("expectedusername");
+        return getUserData("expectedusername");
     }
 }

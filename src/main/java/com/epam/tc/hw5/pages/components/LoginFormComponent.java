@@ -1,8 +1,7 @@
 package com.epam.tc.hw5.pages.components;
 
-import com.epam.tc.hw5.entity.User;
-import com.epam.tc.hw5.entityutils.UserBuilder;
 import com.epam.tc.hw5.pages.HomePage;
+import com.epam.tc.hw5.utils.UserProperties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,10 +28,9 @@ public class LoginFormComponent extends AbstractComponent {
     }
 
     public HomePage login() {
-        User user = UserBuilder.returnNewUser();
         userIcon.click();
-        loginUsernameField.sendKeys(user.getUsername());
-        loginUserPasswordField.sendKeys(user.getPassword());
+        loginUsernameField.sendKeys(UserProperties.getUsername());
+        loginUserPasswordField.sendKeys(UserProperties.getPassword());
         enterButton.click();
         return new HomePage(driver);
     }
