@@ -3,9 +3,7 @@
 <suite name="homework5Suite">
   <test name="hw5Test">
     <classes>
-      <class name="com.epam.tc.egorova.hw5.cucumber.RunAcceptanceTestOne"/>
-      <class name="com.epam.tc.egorova.hw5.cucumber.RunAcceptanceTestTwo"/>
-      <class name="com.epam.tc.egorova.hw5.cucumber.RunAcceptanceTestThree"/>
+      <class name="com.epam.tc.egorova.hw5.cucumber.RunAcceptanceTest"/>
     </classes>
   </test>
 </suite>
