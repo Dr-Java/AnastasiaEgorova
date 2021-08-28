@@ -17,11 +17,14 @@
         <testng.suite.file>${testng.configs.path}/defaultsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/generalsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/multdivsuite.xml</testng.suite.file>
-      <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
+        <testng.suite.file>${testng.configs.path}/jdi.light.firstsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/jdi.light.secondsuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/jdi.light.hw3.bonussuite.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/homework4.xml</testng.suite.file>
+        <testng.suite.file>${testng.configs.path}/homework5.xml</testng.suite.file>
         <testng.suite.file>${testng.configs.path}/homework6.xml</testng.suite.file>
+        
+
 
         <checkstyle.version>8.42</checkstyle.version>
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
@@ -43,6 +46,7 @@
         <aspectj.version>1.9.5</aspectj.version>
 
         <cucumber.version>6.11.0</cucumber.version>
+        <lombok.version>1.18.20</lombok.version>
     </properties>
 
      <build>
@@ -212,16 +216,27 @@
             </properties>
         </profile>
 
+      <profile>
+          <id>homework5</id>
+          <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+           <properties>
+               <testng.suite.file>${testng.configs.path}/homework5.xml</testng.suite.file>
+         </properties>
+        </profile>
+                
+      
         <profile>
             <id>homework6</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
-            <properties>
+           <properties>
                 <testng.suite.file>${testng.configs.path}/homework6.xml</testng.suite.file>
-            </properties>
+           </properties>
         </profile>
-
+          
     </profiles>
 
 
@@ -282,6 +297,13 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
             <scope>compile</scope>
+         </dependency>
+      
+      <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
