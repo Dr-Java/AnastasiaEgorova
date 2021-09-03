@@ -3,7 +3,6 @@ package com.epam.tc.hw7jdi.pages;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.FindBy;
 import com.epam.jdi.light.elements.pageobjects.annotations.Url;
-import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Icon;
 import com.epam.jdi.light.ui.html.elements.common.Text;
 import com.epam.tc.hw7jdi.entities.User;
@@ -21,9 +20,6 @@ public class JdiHomePage extends WebPage {
     @FindBy(id = "user-name")
     public Text userName;
 
-    @FindBy(linkText = "Metals & Colors")
-    public static Button metalsColorsPageButton;
-
     public static void login(User user) {
         userIcon.click();
         loginForm.loginAs(user);
@@ -32,9 +28,4 @@ public class JdiHomePage extends WebPage {
     public String getUserName() {
         return userName.getText();
     }
-
-    public void openMetalsColorsPage() {
-        metalsColorsPageButton.click();
-    }
-
 }

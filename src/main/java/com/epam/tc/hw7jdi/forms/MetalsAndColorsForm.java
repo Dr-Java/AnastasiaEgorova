@@ -65,11 +65,11 @@ public class MetalsAndColorsForm extends Form<MetalsAndColors> {
     }
 
     private void deselectVegetables() {
-        var vegetablesFromDropdown = "vegetables";
-        vegetables.select(vegetablesFromDropdown);
+        vegetables.select("vegetables");
     }
 
-    public void clickSubmitButton() {
+    @Override
+    public void submit() {
         submitButton.click();
     }
 }

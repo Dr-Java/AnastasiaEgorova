@@ -1,5 +1,7 @@
 package com.epam.tc.egorova.hw7jdi.tests;
 
+import static com.epam.tc.hw7jdi.JdiSite.headerMenu;
+
 import com.epam.tc.egorova.hw7jdi.dataprovider.JdiTestDataProvider;
 import com.epam.tc.hw7jdi.JdiSite;
 import com.epam.tc.hw7jdi.entities.MetalsAndColors;
@@ -11,23 +13,20 @@ public class JdiTests extends TestInit {
 
     SoftAssertions soft = new SoftAssertions();
 
-    @Test
-    public void testSuccessfulLogin() {
-        JdiSite.login(User.ROMAN);
+    @Test(dataProvider = "JDITestDataSet",
+          dataProviderClass = JdiTestDataProvider.class)
+    public void testMetalsAndColorsPageInteractions(MetalsAndColors metalsAndColors) {
         soft.assertThat(JdiSite.getUserName())
             .as("Incorrect loggined username")
             .isEqualTo(User.ROMAN.getFullName());
-    }
-
-    @Test(dataProvider = "JDITestDataSet", dataProviderClass = JdiTestDataProvider.class,
-          dependsOnMethods = "testSuccessfulLogin")
-    public void testMetalsAndColorsPageInteractions(MetalsAndColors metalsAndColors) {
-        JdiSite.openMetalsColorsPage();
+        headerMenu.select(JdiTestDataProvider.METALS_AND_COLORS_HEADER_ITEM);
         soft.assertThat(JdiSite.metalsAndColorsPage.title)
             .as("Incorrect page title")
             .isEqualTo(JdiTestDataProvider.METALS_AND_COLORS_PAGE_TITLE);
         JdiSite.metalsAndColorsPage.fillMetalsAndColorsForm(metalsAndColors);
         JdiSite.metalsAndColorsPage.clickSubmitButton();
-        JdiSite.metalsAndColorsPage.resultSectionShouldContainData(metalsAndColors);
+        soft.assertThat(JdiSite.metalsAndColorsPage.getActualResultsText())
+            .as("Incorrect results text")
+            .isEqualTo(metalsAndColors.getExpectedResultsText());
     }
 }
