@@ -28,4 +28,9 @@ public class JdiHomePage extends WebPage {
     public String getUserName() {
         return userName.getText();
     }
+
+    public void userShouldBeLoggined() {
+        userName.is().text(User.ROMAN.getFullName());
+    }
 }
+

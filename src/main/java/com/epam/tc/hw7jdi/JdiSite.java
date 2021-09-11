@@ -25,7 +25,4 @@ public class JdiSite {
         JdiHomePage.login(user);
     }
 
-    public static String getUserName() {
-        return jdiHomePage.getUserName();
-    }
 }

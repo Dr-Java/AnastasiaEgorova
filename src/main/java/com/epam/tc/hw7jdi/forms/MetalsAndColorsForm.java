@@ -58,14 +58,10 @@ public class MetalsAndColorsForm extends Form<MetalsAndColors> {
 
         metals.select(metalsAndColors.getMetals());
 
-        deselectVegetables();
+        vegetables.select("vegetables");
         for (String vegetable : metalsAndColors.getVegetables()) {
             vegetables.select(vegetable);
         }
-    }
-
-    private void deselectVegetables() {
-        vegetables.select("vegetables");
     }
 
     @Override
